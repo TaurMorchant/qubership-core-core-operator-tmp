@@ -1,0 +1,98 @@
+apiVersion: core.qubership.org/v1
+kind: MaaS
+subKind: Topic
+metadata:
+  name: ibs-bis-notifications-topic
+  namespace: {{ .Values.NAMESPACE }}
+  labels:
+    app.kubernetes.io/instance: "{{ .Values.SERVICE_NAME }}"
+    app.kubernetes.io/managed-by: operator
+spec:
+  pragma:
+    onEntityExists: merge
+  topicNameTemplate: "%namespace%-ibs-bis-notifications-topic"
+  minNumPartitions: "{{ default 40 .Values.IBS_TOPIC_IBS_BIS_NOTIFICATIONS_NUM_PARTITIONS}}"
+  replicationFactor: "{{default -1 .Values.IBS_TOPIC_IBS_BIS_NOTIFICATIONS_REPLICATION_FACTOR}}"
+  classifier:
+    name: ibs_bis_notifications_topic
+---
+
+apiVersion: core.qubership.org/v1
+kind: MaaS
+subKind: Topic
+metadata:
+  name: ibs-bis-notifications-topic
+  namespace: {{ .Values.NAMESPACE }}
+  labels:
+    app.kubernetes.io/instance: "{{ .Values.SERVICE_NAME }}"
+    app.kubernetes.io/managed-by: operator
+spec:
+  pragma:
+    onEntityExists: merge
+  topicNameTemplate: "%namespace%-ibs-bis-notifications-topic"
+  minNumPartitions: "{{ default 40 .Values.IBS_TOPIC_IBS_BIS_NOTIFICATIONS_NUM_PARTITIONS}}"
+  replicationFactor: "{{default -1 .Values.IBS_TOPIC_IBS_BIS_NOTIFICATIONS_REPLICATION_FACTOR}}"
+---
+
+status:
+  conditions:
+    - lastTransitionTime: "2021-09-02T06:08:14Z"
+      lastUpdateTime: "2021-09-02T06:08:14Z"
+      message: ""
+      reason: Success
+      status: "True"
+      type: Converged
+  phase: Updated
+  observedGeneration: 1
+---
+apiVersion: core.qubership.org/v1
+kind: MaaS
+subKind: Topic
+metadata:
+  name: ibs-bis-notifications-topic-{{ .Values.NAMESPACE }}
+  namespace: {{ .Values.NAMESPACE }}
+  labels:
+    app.kubernetes.io/instance: "{{ .Values.SERVICE_NAME }}"
+    app.kubernetes.io/managed-by: operator
+spec:
+  pragma:
+    onEntityExists: merge
+  topicNameTemplate: "%namespace%-ibs-bis-notifications-topic"
+  minNumPartitions: "{{ default 40 .Values.IBS_TOPIC_IBS_BIS_NOTIFICATIONS_NUM_PARTITIONS}}"
+  replicationFactor: "{{default -1 .Values.IBS_TOPIC_IBS_BIS_NOTIFICATIONS_REPLICATION_FACTOR}}"
+status:
+  conditions:
+    - lastTransitionTime: "2021-09-02T06:08:14Z"
+      lastUpdateTime: "2021-09-02T06:08:14Z"
+      message: "Kaffka not available"
+      reason: Failed
+      status: "False"
+      type: Converged
+  phase: BackingOff
+  observedGeneration: 3
+---
+apiVersion: core.qubership.org/v1
+kind: MaaS
+subKind: Topic
+metadata:
+  name: ibs-bis-notifications-topic
+  namespace: {{ .Values.NAMESPACE }}
+  labels:
+    app.kubernetes.io/instance: "{{ .Values.SERVICE_NAME }}"
+    app.kubernetes.io/managed-by: operator
+spec:
+  pragma:
+    onEntityExists: merge
+  topicNameTemplate: "%namespace%-ibs-bis-notifications-topic"
+  minNumPartitions: "{{ default 40 .Values.IBS_TOPIC_IBS_BIS_NOTIFICATIONS_NUM_PARTITIONS}}"
+  replicationFactor: "{{default -1 .Values.IBS_TOPIC_IBS_BIS_NOTIFICATIONS_REPLICATION_FACTOR}}"
+status:
+  conditions:
+    - lastTransitionTime: "2021-09-02T06:08:14Z"
+      lastUpdateTime: "2021-09-02T06:08:14Z"
+      message: "Invalid topic name"
+      reason: Failed
+      status: "False"
+      type: Converged
+  phase: InvalidConfiguration
+  observedGeneration: 5

@@ -1,0 +1,248 @@
+---
+apiVersion: core.qubership.org/v1
+kind: Mesh
+subKind: RouteConfiguration
+metadata:
+  name: tenant-manager-public-routes
+  namespace: cloudbss-kube-core-dev-1
+  labels:
+    deployer.cleanup/allow: "true"
+    app.kubernetes.io/managed-by: saasDeployer
+    app.kubernetes.io/part-of: "Cloud-Core"
+    app.kubernetes.io/processed-by-operator: "core-operator"
+spec:
+  gateways: ["public-gateway-service"]
+  tlsSupported: true
+  virtualServices:
+    - name: public-gateway-service
+      hosts: ["*"]
+      routeConfiguration:
+        version: v1
+        routes:
+          - destination:
+              cluster: tenant-manager
+              endpoint: http://tenant-manager-v1:8080
+              tlsEndpoint: https://tenant-manager-v1:8443
+            rules:
+              - match:
+                  prefix: /api/v4/tenant-manager/public-api
+                prefixRewrite: /api/v4/api
+---
+apiVersion: core.qubership.org/v1
+kind: Mesh
+subKind: RouteConfiguration
+metadata:
+  name: tenant-manager-public-routes
+  namespace: cloud-core
+  labels:
+    deployer.cleanup/allow: "true"
+    app.kubernetes.io/managed-by: saasDeployer
+    app.kubernetes.io/part-of: "Cloud-Core"
+    app.kubernetes.io/processed-by-operator: "core-operator"
+spec:
+  gateways: ["public-gateway-service"]
+  tlsSupported: true
+  virtualServices:
+    - name: public-gateway-service
+      hosts: ["*"]
+      routeConfiguration:
+        version: v1
+        routes:
+          - destination:
+              cluster: tenant-manager
+              endpoint: http://tenant-manager-v1:8080
+              tlsEndpoint: https://tenant-manager-v1:8443
+            rules:
+              - match:
+                  prefix: /api/v4/tenant-manager/public-api
+                prefixRewrite: /api/v4/api
+---
+apiVersion: core.qubership.org/v1
+kind: Mesh
+subKind: Cluster
+metadata:
+  name: custom-cluster
+  namespace: cloud-core
+  labels:
+    deployer.cleanup/allow: "true"
+    app.kubernetes.io/managed-by: saasDeployer
+    app.kubernetes.io/part-of: "Cloud-Core"
+    app.kubernetes.io/processed-by-operator: "core-operator"
+spec:
+  gateways:
+    - private-gateway-service
+  name: tenant-manager||tenant-manager||8443
+  tls: custom-cert-name
+  endpoints:
+    - https://tenant-manager:8443
+  circuitBreaker:
+    threshold:
+      maxConnections: 1
+---
+apiVersion: core.qubership.org/v1
+kind: Mesh
+subKind: LoadBalance
+metadata:
+  name: quot-eng-lb
+  namespace: cloud-core
+  labels:
+    deployer.cleanup/allow: "true"
+    app.kubernetes.io/managed-by: saasDeployer
+    app.kubernetes.io/part-of: "Cloud-Core"
+    app.kubernetes.io/processed-by-operator: "core-operator"
+spec:
+  cluster: "quotation-engine"
+  version: "v1"
+  endpoint: http://quotation-engine-v1:8080
+  policies:
+    - header:
+        headerName: "BID"
+    - cookie:
+        name: "JSESSION"
+        ttl: 5
+---
+apiVersion: core.qubership.org/v1
+kind: Mesh
+subKind: HttpFilters
+metadata:
+  name: delete-route-yaml-example
+  namespace: test-namespace
+  labels:
+    deployer.cleanup/allow: "true"
+    app.kubernetes.io/managed-by: saasDeployer
+    app.kubernetes.io/part-of: "Cloud-Core"
+    app.kubernetes.io/processed-by-operator: "core-operator"
+spec:
+  gateways:
+    - my-ingress-gateway
+  extAuthzFilter:
+    name: myExtAuthzFilter # unique name of extauthz filter for your ingress gateway
+    contextExtensions:
+      key1: val1 # some additional parameters that will be passed to your authorization server by gateway with CheckRequest
+    destination: # the same `destination` structure as in routes registration API, so you can add TLS settings if necessary
+      cluster: ${ENV_SERVICE_NAME}
+      endpoint: ${ENV_DEPLOYMENT_RESOURCE_NAME}:10050
+---
+apiVersion: core.qubership.org/v1
+kind: Mesh
+subKind: HttpFiltersDrop
+metadata:
+  name: delete-route-yaml-example
+  namespace: test-namespace
+  labels:
+    deployer.cleanup/allow: "true"
+    app.kubernetes.io/managed-by: saasDeployer
+    app.kubernetes.io/part-of: "Cloud-Core"
+    app.kubernetes.io/processed-by-operator: "core-operator"
+spec:
+  gateways:
+    - my-ingress-gateway
+  extAuthzFilter:
+    name: myExtAuthzFilter # unique name of extauthz filter for your ingress gateway
+---
+apiVersion: core.qubership.org/v1
+kind: Mesh
+subKind: RateLimit
+metadata:
+  name: delete-route-yaml-example
+  namespace: test-namespace
+  labels:
+    deployer.cleanup/allow: "true"
+    app.kubernetes.io/managed-by: saasDeployer
+    app.kubernetes.io/part-of: "Cloud-Core"
+    app.kubernetes.io/processed-by-operator: "core-operator"
+spec:
+  name: ${ENV_SERVICE_NAME}-default-rate-limit
+  priority: PROJECT
+  limitRequestPerSecond: 100
+---
+apiVersion: core.qubership.org/v1
+kind: Mesh
+subKind: VirtualService
+metadata:
+  name: virtual-service-name
+  gateway: public-gateway-service
+  namespace: cloud-core
+  labels:
+    deployer.cleanup/allow: "true"
+    app.kubernetes.io/managed-by: saasDeployer
+    app.kubernetes.io/part-of: "Cloud-Core"
+    app.kubernetes.io/processed-by-operator: "core-operator"
+spec:
+  routeConfiguration:
+    version: v1
+    routes:
+      - destination:
+          cluster: tenant-manager
+          endpoint: http://tenant-manager-v1:8080
+        rules:
+          - match:
+              prefix: /api/v4/tenant-manager/tenants
+            prefixRewrite: /api/v4/tenants
+---
+apiVersion: core.qubership.org/v1
+kind: Mesh
+subKind: RoutesDrop
+metadata:
+  name: delete-route-yaml-example
+  namespace: test-namespace
+  labels:
+    deployer.cleanup/allow: "true"
+    app.kubernetes.io/managed-by: saasDeployer
+    app.kubernetes.io/part-of: "Cloud-Core"
+    app.kubernetes.io/processed-by-operator: "core-operator"
+spec:
+  entities:
+    - gateways:
+        - facade-gateway-service
+      virtualService: test-service
+      routes:
+        - prefix: /test-route-1
+---
+apiVersion: core.qubership.org/v1
+kind: Mesh
+subKind: StatefulSession
+metadata:
+  name: ""
+  namespace: '' # optional: if empty, namespace of the control-plane will be used
+  labels:
+    deployer.cleanup/allow: "true"
+    app.kubernetes.io/managed-by: saasDeployer
+    app.kubernetes.io/part-of: "Cloud-Core"
+    app.kubernetes.io/processed-by-operator: "core-operator"
+spec:
+  namespace: '' # optional: will be taken from metadata by default
+  gateways: ["public-gateway-service", "private-gateway-service"]
+  cluster: "trace-service" # microservice family name
+  version: "v1" # optional: affects ACTIVE version by default
+  port: 8080 # optional: affects all known service ports by default
+  hostname: trace-service-v1 # optional: to specify hostname of custom endpoint
+  enabled: true # optional: use false to disable cluster stateful session configuration for this specific endpoint
+  cookie:
+    name: sticky-cookie # optional: on empty name new unique name will be generated
+    ttl: 0
+    path: /
+---
+apiVersion: core.qubership.org/v1
+kind: Mesh
+subKind: TlsDef
+metadata:
+  name: tenant-manager-public-routes
+  namespace: cloudbss-kube-core-dev-1
+  labels:
+    deployer.cleanup/allow: "true"
+    app.kubernetes.io/managed-by: saasDeployer
+    app.kubernetes.io/part-of: "Cloud-Core"
+    app.kubernetes.io/processed-by-operator: "core-operator"
+spec:
+  name: custom-cert
+  trustedForGateways:
+    - egress-gateway
+  tls:
+    enabled: true
+    insecure: false
+    sni: google.com
+    trustedCA: |
+      -----BEGIN CERTIFICATE-----
+      **************************
+      -----END CERTIFICATE-----

@@ -1,0 +1,56 @@
+apiVersion: core.qubership.org/v1
+kind: DBaaS
+subKind: DbPolicy
+metadata:
+  name: {{ .Values.SERVICE_NAME}}-dbPolicy
+  namespace:  {{ .Values.NAMESPACE }}
+  labels:
+    app.kubernetes.io/instance: {{ .Values.SERVICE_NAME}}
+    app.kubernetes.io/managed-by: operator
+spec:
+  apiVersion: v1
+  services:
+    - name: install-base-service
+      roles:
+        - admin
+    - name: cdc-streaming-platform
+      roles:
+        - streaming
+    - name: cdc-control
+      roles:
+        - streaming
+    - name: data-slicing-tool
+      roles:
+        - admin
+  policy:
+    - type: postgresql
+      defaultRole: admin
+      additionalRole: []
+    - type: opensearch
+      defaultRole: admin
+      additionalRole: []
+---
+apiVersion: core.qubership.org/v1
+kind: DBaaS
+subKind: DatabaseDeclaration
+metadata:
+  name: {{ .Values.SERVICE_NAME}}-<dbConfigName>
+  namespace:  {{ .Values.NAMESPACE }}
+  labels:
+    app.kubernetes.io/instance: {{ .Values.SERVICE_NAME }}
+    app.kubernetes.io/managed-by: operator
+spec:
+  apiVersion: v1
+  declarations:
+    - classifierConfig:
+        classifier:
+          scope: service
+          customKeys:
+            logicalDBName: configs
+      type: postgresql
+      versioningConfig:
+        approach: clone
+      initialInstantiation:
+        approach: clone
+        sourceClassifier:
+          scope: service

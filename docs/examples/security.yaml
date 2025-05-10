@@ -1,0 +1,19 @@
+apiVersion: core.qubership.org/v1
+kind: Security
+subKind: Action
+metadata:
+  labels:
+    app.kubernetes.io/instance: {{ .Values.SERVICE_NAME }}
+    app.kubernetes.io/managed-by: operator
+spec:
+  roles:
+    create:
+      tenant:
+        - ROLE_TENANT_ADMIN
+        - ROLE_IBS_Admin
+        - ROLE_CSR
+        - ROLE_Sales_Manager
+        - ROLE_BIS_RO
+        - ROLE_BIS_RW
+        - ROLE_Customer
+        - ROLE_E2E_EXTERNAL_USER

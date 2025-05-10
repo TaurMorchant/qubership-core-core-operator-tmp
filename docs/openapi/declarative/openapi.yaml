@@ -1,0 +1,234 @@
+openapi: 3.0.3
+info:
+  title: Unified Declaration processing REST API
+  description: Unified Declaration processing REST API
+  version: 1.0.0
+servers:
+  - url: 'http://xaas:8080'
+    description: XaaS server
+paths:
+  /api/declarations/v1/apply:
+    post:
+      summary: Upload declaration
+      description: Upload new or update exisiting entity declaration
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CR'
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SuccessfulResponse'
+        '202':
+          description: Asynchronous execution started
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SuccessfulResponse'
+        '400':
+          description: Input data validation error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Request execution error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+    delete:
+      summary: Delete entity
+      description: Delete entity
+      responses:
+        '204':
+          description: Entity to delete
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CR'
+        '500':
+          description: Request execution error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/declarations/v1/operation/{trackingId}/status:
+    get:
+      summary: Returns current asynchronous operation execution status
+      description: Returns current asynchronous operation execution status
+      parameters:
+        - name: trackingId
+          in: path
+          description: process id string
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SuccessfulResponse'
+        '404':
+          description: Incorrect trackingId
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Request execution error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/declarations/v1/operation/{trackingId}/terminate:
+    post:
+      summary: Returns current asynchronous operation execution status
+      description: Returns current asynchronous operation execution status
+      parameters:
+        - name: trackingId
+          in: path
+          description: process id string
+          required: true
+          schema:
+            type: string
+      responses:
+        '204':
+          description: Process terminated successfully
+        '404':
+          description: Incorrect trackingId
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Request execution error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+components:
+  schemas:
+    CR:
+      description: Body of CR as JSON
+      type: object
+    SuccessfulResponse:
+      type: object
+      required:
+        - status
+        - type
+      properties:
+        status:
+          type: string
+          description: Overall result of current declaration processing status
+          enum:
+            - not started
+            - in progress
+            - completed
+        trackingId:
+          type: string
+          description: |
+            Unique ID of asynchronous operation that was started by this call. 
+            Should not be returned if call is used to check asynchronous
+          example: 123456 or GUID
+        conditions:
+          type: array
+          description: |
+            List of system (XaaS) specific lifecycle steps that 
+            should be accomplished during declaration processing.
+
+            This field is required when there are multiple steps 
+            and every step is a separate operation in terms of troubleshooting, i.e. when
+            such division on steps and step result will be useful for further defect 
+            resolving or result processing. Especially when some of these steps has failed. 
+
+            In case when declaration processing is a simple and straight-forward operation 
+            that produce no important information when processed successfully - 
+            this value should not be returned.
+          items:
+            $ref: '#/components/schemas/Condition'
+
+    Condition:
+      type: object
+      required:
+        - type
+        - state
+      properties:
+        type:
+          type: string
+          description: |
+            Name of current step. For compatibility with CRs etalon model - field is 
+            called "type"
+        state:
+          type: string
+          description: |
+            Name of current step. For compatibility with CRs etalon model - field is 
+            called "type"
+          enum:
+            - NOT_STARTED
+            - IN_PROGRESS
+            - FAILED
+            - COMPLETED
+        reason:
+          type: string
+          description: |
+            Required field in case of error
+            
+            Human readable information with error message when this particular step 
+            has failed. Or important data that should be returned even if operation 
+            is completed successfully
+        message:
+          type: string
+          description: |
+            Required field in case of error
+            
+            Detailed information about error
+
+    ErrorResponse:
+      type: object
+      required:
+        - id
+        - reason
+        - status
+        - "@type"
+      properties:
+        id:
+          type: string
+          description: Either new UUID or UUID of source error (if error was raised downstream)
+        code:
+          type: string
+          description: Error Code like CORE-DBAAS-4001. Should be specified if current error contains error code
+        reason:
+          type: string
+          description: Human readable summary of error
+        message:
+          type: string
+          description: Detailed error description with technical details, but w/o stack trace
+        referenceError:
+          type: string
+          description: Should be provided is error code exists. Format "https://errors-portal.netcracker.com/error/<Error Code>"
+        status:
+          type: integer
+          description: HTTP response code
+        meta:
+          type: object
+          description: Structure that contains extra data that will help ro investigate problem. Microservice name. DB name, Role, classifier etc.
+        "@type":
+          type: string
+          description: NC specific constant defines this error type
+          example: NC.TMFErrorResponse.v1.0
+        "@schemaLocation":
+          type: string
+          description: NC specific constant defines this structure schema location url
+          example: https://errors-portal.netcracker.com/error/schema/NC.TMFErrorResponse.v1.0
+
+
+  
