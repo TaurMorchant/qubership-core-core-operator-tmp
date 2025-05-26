@@ -1,3 +1,5 @@
+[![Maven build](https://github.com/Netcracker/qubership-core-core-operator/actions/workflows/maven-build.yaml/badge.svg)](https://github.com/Netcracker/qubership-core-core-operator/actions/workflows/maven-build.yaml)
+
 # code-with-quarkus
 
 This project uses Quarkus, the Supersonic Subatomic Java Framework.
