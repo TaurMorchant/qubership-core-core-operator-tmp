@@ -205,7 +205,7 @@ public abstract class CoreReconciler<T extends CoreResource> implements Reconcil
     }
 
     protected UpdateControl<T> errorHandler(Exception e, T resource) {
-        log.error("Error happened while processing CR");
+        log.error("Error happened while processing CR", e);
         if (e instanceof WebApplicationException exception) {
             try {
                 TmfErrorResponse resp = exception.getResponse().readEntity(TmfErrorResponse.class);
