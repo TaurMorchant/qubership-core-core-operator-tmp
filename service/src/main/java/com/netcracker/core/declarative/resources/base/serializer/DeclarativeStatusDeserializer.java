@@ -1,4 +1,4 @@
-package org.qubership.core.declarative.resources.base.serializer;
+package com.netcracker.core.declarative.resources.base.serializer;
 
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.core.ObjectCodec;

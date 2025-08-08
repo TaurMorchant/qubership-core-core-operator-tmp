@@ -1,4 +1,4 @@
-package org.qubership.core.declarative.client.reconciler;
+package com.netcracker.core.declarative.client.reconciler;
 
 import jakarta.enterprise.inject.Instance;
 import org.junit.jupiter.api.Test;

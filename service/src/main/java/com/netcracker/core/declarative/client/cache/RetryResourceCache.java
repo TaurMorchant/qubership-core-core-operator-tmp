@@ -1,4 +1,4 @@
-package org.qubership.core.declarative.client.cache;
+package com.netcracker.core.declarative.client.cache;
 
 import org.qubership.core.declarative.resources.base.Phase;
 import io.javaoperatorsdk.operator.processing.event.ResourceID;

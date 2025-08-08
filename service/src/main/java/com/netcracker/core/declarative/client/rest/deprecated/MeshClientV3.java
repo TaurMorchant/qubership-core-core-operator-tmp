@@ -1,4 +1,4 @@
-package org.qubership.core.declarative.client.rest.deprecated;
+package com.netcracker.core.declarative.client.rest.deprecated;
 
 import org.qubership.core.declarative.client.rest.DeclarativeRequest;
 import org.qubership.core.declarative.client.rest.tracing.RequestIdHeaderFactory;

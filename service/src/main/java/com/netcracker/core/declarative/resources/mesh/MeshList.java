@@ -1,4 +1,4 @@
-package org.qubership.core.declarative.resources.mesh;
+package com.netcracker.core.declarative.resources.mesh;
 
 import io.fabric8.kubernetes.api.model.DefaultKubernetesResourceList;
 

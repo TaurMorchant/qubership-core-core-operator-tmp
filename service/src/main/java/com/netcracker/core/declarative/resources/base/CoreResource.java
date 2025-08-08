@@ -1,4 +1,4 @@
-package org.qubership.core.declarative.resources.base;
+package com.netcracker.core.declarative.resources.base;
 
 import io.fabric8.kubernetes.api.model.Namespaced;
 import io.fabric8.kubernetes.api.model.runtime.RawExtension;

@@ -1,4 +1,4 @@
-package org.qubership.core.declarative.client.k8s;
+package com.netcracker.core.declarative.client.k8s;
 
 import org.qubership.core.declarative.resources.maas.Maas;
 import org.qubership.core.declarative.resources.maas.MaasList;

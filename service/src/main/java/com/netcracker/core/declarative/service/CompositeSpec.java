@@ -1,4 +1,4 @@
-package org.qubership.core.declarative.service;
+package com.netcracker.core.declarative.service;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;

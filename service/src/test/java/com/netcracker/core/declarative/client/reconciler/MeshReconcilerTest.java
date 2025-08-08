@@ -1,4 +1,4 @@
-package org.qubership.core.declarative.client.reconciler;
+package com.netcracker.core.declarative.client.reconciler;
 
 import org.qubership.core.declarative.client.rest.DeclarativeRequest;
 import org.qubership.core.declarative.client.rest.deprecated.MeshClientV3;

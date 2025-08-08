@@ -1,4 +1,4 @@
-package org.qubership.core.declarative.client.rest;
+package com.netcracker.core.declarative.client.rest;
 
 public enum ProcessStatus {
     NOT_STARTED("NOT_STARTED"),

@@ -1,4 +1,4 @@
-package org.qubership.core.declarative.client.reconciler;
+package com.netcracker.core.declarative.client.reconciler;
 
 import org.qubership.core.declarative.client.rest.DeclarativeClient;
 import org.qubership.core.declarative.resources.base.DeclarativeStatus;

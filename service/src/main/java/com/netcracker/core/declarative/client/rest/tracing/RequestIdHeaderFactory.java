@@ -1,4 +1,4 @@
-package org.qubership.core.declarative.client.rest.tracing;
+package com.netcracker.core.declarative.client.rest.tracing;
 
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.ws.rs.core.MultivaluedHashMap;

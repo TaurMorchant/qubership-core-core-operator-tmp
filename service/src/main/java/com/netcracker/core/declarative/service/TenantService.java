@@ -1,4 +1,4 @@
-package org.qubership.core.declarative.service;
+package com.netcracker.core.declarative.service;
 
 import org.qubership.core.declarative.model.Tenant;
 import io.vertx.ext.consul.*;

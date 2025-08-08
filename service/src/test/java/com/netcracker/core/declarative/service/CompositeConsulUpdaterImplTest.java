@@ -1,4 +1,4 @@
-package org.qubership.core.declarative.service;
+package com.netcracker.core.declarative.service;
 
 import org.qubership.core.declarative.client.rest.CompositeClient;
 import io.vertx.core.Future;

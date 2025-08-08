@@ -1,4 +1,4 @@
-package org.qubership.core.declarative.model;
+package com.netcracker.core.declarative.model;
 
 import lombok.Data;
 

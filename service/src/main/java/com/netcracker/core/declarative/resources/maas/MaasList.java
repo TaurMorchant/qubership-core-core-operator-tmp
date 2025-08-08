@@ -1,4 +1,4 @@
-package org.qubership.core.declarative.resources.maas;
+package com.netcracker.core.declarative.resources.maas;
 
 import io.fabric8.kubernetes.api.model.DefaultKubernetesResourceList;
 import io.fabric8.kubernetes.model.annotation.Kind;

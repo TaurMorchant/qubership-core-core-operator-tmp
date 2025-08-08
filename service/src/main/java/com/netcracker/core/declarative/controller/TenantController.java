@@ -1,4 +1,4 @@
-package org.qubership.core.declarative.controller;
+package com.netcracker.core.declarative.controller;
 
 import org.qubership.core.declarative.model.Tenant;
 import org.qubership.core.declarative.service.TenantService;

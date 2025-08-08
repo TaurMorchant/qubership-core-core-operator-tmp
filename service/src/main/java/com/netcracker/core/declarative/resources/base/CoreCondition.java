@@ -1,4 +1,4 @@
-package org.qubership.core.declarative.resources.base;
+package com.netcracker.core.declarative.resources.base;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;

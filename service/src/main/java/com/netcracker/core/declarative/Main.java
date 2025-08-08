@@ -1,4 +1,4 @@
-package org.qubership.core.declarative;
+package com.netcracker.core.declarative;
 
 import io.javaoperatorsdk.operator.Operator;
 import io.quarkus.runtime.Quarkus;

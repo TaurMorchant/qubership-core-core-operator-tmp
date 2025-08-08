@@ -1,4 +1,4 @@
-package org.qubership.core.declarative.client.constants;
+package com.netcracker.core.declarative.client.constants;
 
 public class Constants {
     public static final String RESOURCE_NAME = "resource-name";

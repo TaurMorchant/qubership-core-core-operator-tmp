@@ -1,4 +1,4 @@
-package org.qubership.core.declarative.client.reconciler;
+package com.netcracker.core.declarative.client.reconciler;
 
 import com.fasterxml.jackson.core.JsonFactory;
 import com.fasterxml.jackson.core.JsonGenerator;

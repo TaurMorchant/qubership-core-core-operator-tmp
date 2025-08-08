@@ -1,4 +1,4 @@
-package org.qubership.core.declarative.service;
+package com.netcracker.core.declarative.service;
 
 import io.vertx.ext.consul.*;
 import lombok.AllArgsConstructor;

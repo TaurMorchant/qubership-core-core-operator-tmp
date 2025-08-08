@@ -1,4 +1,4 @@
-package org.qubership.core.declarative.client.rest;
+package com.netcracker.core.declarative.client.rest;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
