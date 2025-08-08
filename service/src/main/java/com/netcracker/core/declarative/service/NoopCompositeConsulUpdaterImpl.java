@@ -1,6 +1,6 @@
 package com.netcracker.core.declarative.service;
 
-import org.qubership.core.declarative.exception.NoopConsulException;
+import com.netcracker.core.declarative.exception.NoopConsulException;
 
 import java.util.Set;
 

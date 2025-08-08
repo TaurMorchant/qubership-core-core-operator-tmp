@@ -1,12 +1,12 @@
 package com.netcracker.core.declarative.client.reconciler;
 
-import org.qubership.core.declarative.client.rest.Condition;
-import org.qubership.core.declarative.client.rest.DeclarativeClient;
-import org.qubership.core.declarative.client.rest.DeclarativeResponse;
-import org.qubership.core.declarative.client.rest.ProcessStatus;
-import org.qubership.core.declarative.resources.base.DeclarativeStatus;
-import org.qubership.core.declarative.resources.base.Phase;
-import org.qubership.core.declarative.resources.maas.Maas;
+import com.netcracker.core.declarative.client.rest.Condition;
+import com.netcracker.core.declarative.client.rest.DeclarativeClient;
+import com.netcracker.core.declarative.client.rest.DeclarativeResponse;
+import com.netcracker.core.declarative.client.rest.ProcessStatus;
+import com.netcracker.core.declarative.resources.base.DeclarativeStatus;
+import com.netcracker.core.declarative.resources.base.Phase;
+import com.netcracker.core.declarative.resources.maas.Maas;
 import io.fabric8.kubernetes.api.model.runtime.RawExtension;
 import io.quarkus.test.InjectMock;
 import io.quarkus.test.junit.QuarkusTest;

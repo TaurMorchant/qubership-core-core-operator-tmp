@@ -13,11 +13,11 @@ import jakarta.inject.Named;
 import lombok.extern.slf4j.Slf4j;
 import org.eclipse.microprofile.config.inject.ConfigProperty;
 import org.eclipse.microprofile.rest.client.RestClientBuilder;
-import org.qubership.cloud.consul.provider.common.TokenStorage;
-import org.qubership.core.declarative.client.rest.CompositeClient;
-import org.qubership.core.declarative.client.rest.DeclarativeClient;
-import org.qubership.core.declarative.client.rest.deprecated.MeshClientV3;
-import org.qubership.core.declarative.service.*;
+import com.netcracker.cloud.consul.provider.common.TokenStorage;
+import com.netcracker.core.declarative.client.rest.CompositeClient;
+import com.netcracker.core.declarative.client.rest.DeclarativeClient;
+import com.netcracker.core.declarative.client.rest.deprecated.MeshClientV3;
+import com.netcracker.core.declarative.service.*;
 
 import java.net.URI;
 import java.net.URL;
@@ -25,8 +25,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
-import static org.qubership.core.declarative.client.reconciler.CompositeReconciler.DBAAS_NAME;
-import static org.qubership.core.declarative.client.reconciler.CompositeReconciler.MAAS_NAME;
+import static com.netcracker.core.declarative.client.reconciler.CompositeReconciler.DBAAS_NAME;
+import static com.netcracker.core.declarative.client.reconciler.CompositeReconciler.MAAS_NAME;
 
 @Slf4j
 public class Configuration {

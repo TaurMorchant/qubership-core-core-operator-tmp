@@ -5,22 +5,22 @@ import io.fabric8.kubernetes.client.KubernetesClient;
 import io.javaoperatorsdk.operator.api.reconciler.UpdateControl;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
-import org.qubership.core.declarative.client.rest.Condition;
-import org.qubership.core.declarative.client.rest.ProcessStatus;
-import org.qubership.core.declarative.exception.NoopConsulException;
-import org.qubership.core.declarative.resources.base.CoreCondition;
-import org.qubership.core.declarative.resources.base.CoreResource;
-import org.qubership.core.declarative.resources.base.Phase;
-import org.qubership.core.declarative.resources.composite.Composite;
-import org.qubership.core.declarative.service.CompositeConsulUpdater;
-import org.qubership.core.declarative.service.CompositeSpec;
-import org.qubership.core.declarative.service.CompositeStructureUpdateNotifier;
+import com.netcracker.core.declarative.client.rest.Condition;
+import com.netcracker.core.declarative.client.rest.ProcessStatus;
+import com.netcracker.core.declarative.exception.NoopConsulException;
+import com.netcracker.core.declarative.resources.base.CoreCondition;
+import com.netcracker.core.declarative.resources.base.CoreResource;
+import com.netcracker.core.declarative.resources.base.Phase;
+import com.netcracker.core.declarative.resources.composite.Composite;
+import com.netcracker.core.declarative.service.CompositeConsulUpdater;
+import com.netcracker.core.declarative.service.CompositeSpec;
+import com.netcracker.core.declarative.service.CompositeStructureUpdateNotifier;
 
 import java.util.List;
 import java.util.Set;
 import java.util.function.Function;
 
-import static org.qubership.core.declarative.client.constants.Constants.VALIDATED_STEP_NAME;
+import static com.netcracker.core.declarative.client.constants.Constants.VALIDATED_STEP_NAME;
 
 @Slf4j
 public abstract class BaseCompositeReconciler<T extends Composite> extends CoreReconciler<T> {

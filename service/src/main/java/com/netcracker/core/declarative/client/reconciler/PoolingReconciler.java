@@ -1,10 +1,10 @@
 package com.netcracker.core.declarative.client.reconciler;
 
-import org.qubership.core.declarative.client.rest.DeclarativeClient;
-import org.qubership.core.declarative.client.rest.DeclarativeResponse;
-import org.qubership.core.declarative.client.rest.ProcessStatus;
-import org.qubership.core.declarative.resources.base.CoreResource;
-import org.qubership.core.declarative.resources.base.Phase;
+import com.netcracker.core.declarative.client.rest.DeclarativeClient;
+import com.netcracker.core.declarative.client.rest.DeclarativeResponse;
+import com.netcracker.core.declarative.client.rest.ProcessStatus;
+import com.netcracker.core.declarative.resources.base.CoreResource;
+import com.netcracker.core.declarative.resources.base.Phase;
 import io.fabric8.kubernetes.client.KubernetesClient;
 import io.javaoperatorsdk.operator.api.reconciler.UpdateControl;
 import jakarta.ws.rs.NotFoundException;

@@ -1,6 +1,6 @@
 package com.netcracker.core.declarative.resources.dbaas;
 
-import org.qubership.core.declarative.resources.base.CoreResource;
+import com.netcracker.core.declarative.resources.base.CoreResource;
 import io.fabric8.kubernetes.api.model.Namespaced;
 import io.fabric8.kubernetes.model.annotation.*;
 

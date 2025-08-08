@@ -2,7 +2,7 @@ package com.netcracker.core.declarative.resources.base;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import org.qubership.core.declarative.client.rest.ProcessStatus;
+import com.netcracker.core.declarative.client.rest.ProcessStatus;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;

@@ -8,7 +8,7 @@ import com.fasterxml.jackson.databind.JsonDeserializer;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ArrayNode;
-import org.qubership.core.declarative.resources.base.CoreCondition;
+import com.netcracker.core.declarative.resources.base.CoreCondition;
 
 import java.io.IOException;
 import java.util.LinkedHashMap;

@@ -1,9 +1,9 @@
 package com.netcracker.core.declarative.client.reconciler;
 
-import org.qubership.core.declarative.client.rest.DeclarativeClient;
-import org.qubership.core.declarative.client.rest.DeclarativeRequest;
-import org.qubership.core.declarative.resources.base.DeclarativeStatus;
-import org.qubership.core.declarative.resources.maas.Maas;
+import com.netcracker.core.declarative.client.rest.DeclarativeClient;
+import com.netcracker.core.declarative.client.rest.DeclarativeRequest;
+import com.netcracker.core.declarative.resources.base.DeclarativeStatus;
+import com.netcracker.core.declarative.resources.maas.Maas;
 import io.fabric8.kubernetes.api.model.runtime.RawExtension;
 import io.javaoperatorsdk.operator.api.reconciler.UpdateControl;
 import io.quarkus.test.InjectMock;

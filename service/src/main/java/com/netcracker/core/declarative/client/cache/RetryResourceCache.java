@@ -1,6 +1,6 @@
 package com.netcracker.core.declarative.client.cache;
 
-import org.qubership.core.declarative.resources.base.Phase;
+import com.netcracker.core.declarative.resources.base.Phase;
 import io.javaoperatorsdk.operator.processing.event.ResourceID;
 import io.javaoperatorsdk.operator.processing.event.source.UpdatableCache;
 
@@ -10,7 +10,7 @@ import java.util.Optional;
 import java.util.function.Predicate;
 import java.util.stream.Stream;
 
-import static org.qubership.core.declarative.client.constants.Constants.CR_RETRY_MAX_INTERVAL;
+import static com.netcracker.core.declarative.client.constants.Constants.CR_RETRY_MAX_INTERVAL;
 
 public class RetryResourceCache implements UpdatableCache<Integer> {
     private final Map<ResourceID, Integer> retryCache = new HashMap<>();

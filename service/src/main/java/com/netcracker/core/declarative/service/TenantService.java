@@ -1,10 +1,10 @@
 package com.netcracker.core.declarative.service;
 
-import org.qubership.core.declarative.model.Tenant;
+import com.netcracker.core.declarative.model.Tenant;
 import io.vertx.ext.consul.*;
 import jakarta.ws.rs.ServerErrorException;
 import lombok.extern.slf4j.Slf4j;
-import org.qubership.cloud.consul.provider.common.TokenStorage;
+import com.netcracker.cloud.consul.provider.common.TokenStorage;
 
 import java.util.List;
 import java.util.Optional;

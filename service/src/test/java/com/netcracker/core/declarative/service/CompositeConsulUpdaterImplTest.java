@@ -1,12 +1,12 @@
 package com.netcracker.core.declarative.service;
 
-import org.qubership.core.declarative.client.rest.CompositeClient;
+import com.netcracker.core.declarative.client.rest.CompositeClient;
 import io.vertx.core.Future;
 import io.vertx.ext.consul.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.ArgumentCaptor;
-import org.qubership.cloud.consul.provider.common.TokenStorage;
+import com.netcracker.cloud.consul.provider.common.TokenStorage;
 
 import java.util.Collections;
 import java.util.List;

@@ -6,8 +6,8 @@ import io.javaoperatorsdk.operator.api.reconciler.ControllerConfiguration;
 import io.javaoperatorsdk.operator.processing.retry.GradualRetry;
 import jakarta.inject.Inject;
 import jakarta.inject.Named;
-import org.qubership.core.declarative.client.rest.DeclarativeClient;
-import org.qubership.core.declarative.resources.maas.Maas;
+import com.netcracker.core.declarative.client.rest.DeclarativeClient;
+import com.netcracker.core.declarative.resources.maas.Maas;
 
 @ControllerConfiguration(namespaces = Constants.WATCH_CURRENT_NAMESPACE, name = "MaaSReconciler")
 @SuppressWarnings("unused")

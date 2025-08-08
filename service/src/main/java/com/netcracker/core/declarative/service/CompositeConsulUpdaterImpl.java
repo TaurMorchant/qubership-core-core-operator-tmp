@@ -4,7 +4,7 @@ import io.vertx.ext.consul.*;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
-import org.qubership.cloud.consul.provider.common.TokenStorage;
+import com.netcracker.cloud.consul.provider.common.TokenStorage;
 
 import java.nio.file.Paths;
 import java.util.Collections;

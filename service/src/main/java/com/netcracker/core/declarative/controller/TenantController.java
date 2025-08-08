@@ -1,7 +1,7 @@
 package com.netcracker.core.declarative.controller;
 
-import org.qubership.core.declarative.model.Tenant;
-import org.qubership.core.declarative.service.TenantService;
+import com.netcracker.core.declarative.model.Tenant;
+import com.netcracker.core.declarative.service.TenantService;
 import jakarta.inject.Inject;
 import jakarta.ws.rs.*;
 import lombok.extern.slf4j.Slf4j;

@@ -5,9 +5,9 @@ import io.javaoperatorsdk.operator.api.reconciler.Constants;
 import io.javaoperatorsdk.operator.api.reconciler.ControllerConfiguration;
 import io.javaoperatorsdk.operator.processing.retry.GradualRetry;
 import jakarta.inject.Inject;
-import org.qubership.core.declarative.resources.composite.Composite;
-import org.qubership.core.declarative.service.CompositeConsulUpdater;
-import org.qubership.core.declarative.service.CompositeStructureUpdateNotifier;
+import com.netcracker.core.declarative.resources.composite.Composite;
+import com.netcracker.core.declarative.service.CompositeConsulUpdater;
+import com.netcracker.core.declarative.service.CompositeStructureUpdateNotifier;
 
 import java.util.List;
 

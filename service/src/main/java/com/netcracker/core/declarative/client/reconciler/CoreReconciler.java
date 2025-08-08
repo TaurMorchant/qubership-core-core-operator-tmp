@@ -13,15 +13,15 @@ import jakarta.ws.rs.ServerErrorException;
 import jakarta.ws.rs.WebApplicationException;
 import jakarta.ws.rs.core.Response;
 import org.apache.commons.lang3.StringUtils;
-import org.qubership.cloud.core.error.rest.tmf.TmfErrorResponse;
-import org.qubership.core.declarative.client.cache.RetryResourceCache;
-import org.qubership.core.declarative.client.k8s.DeclarativeKubernetesClient;
-import org.qubership.core.declarative.client.rest.Condition;
-import org.qubership.core.declarative.client.rest.*;
-import org.qubership.core.declarative.resources.base.CoreCondition;
-import org.qubership.core.declarative.resources.base.CoreResource;
-import org.qubership.core.declarative.resources.base.DeclarativeStatus;
-import org.qubership.core.declarative.resources.base.Phase;
+import com.netcracker.cloud.core.error.rest.tmf.TmfErrorResponse;
+import com.netcracker.core.declarative.client.cache.RetryResourceCache;
+import com.netcracker.core.declarative.client.k8s.DeclarativeKubernetesClient;
+import com.netcracker.core.declarative.client.rest.Condition;
+import com.netcracker.core.declarative.client.rest.*;
+import com.netcracker.core.declarative.resources.base.CoreCondition;
+import com.netcracker.core.declarative.resources.base.CoreResource;
+import com.netcracker.core.declarative.resources.base.DeclarativeStatus;
+import com.netcracker.core.declarative.resources.base.Phase;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.slf4j.MDC;
@@ -32,8 +32,8 @@ import java.util.concurrent.TimeUnit;
 
 import static io.quarkus.runtime.util.StringUtil.isNullOrEmpty;
 import static jakarta.servlet.http.HttpServletResponse.*;
-import static org.qubership.core.declarative.client.constants.Constants.*;
-import static org.qubership.core.declarative.resources.base.Phase.*;
+import static com.netcracker.core.declarative.client.constants.Constants.*;
+import static com.netcracker.core.declarative.resources.base.Phase.*;
 
 public abstract class CoreReconciler<T extends CoreResource> implements Reconciler<T> {
     private static final String REPORTING_INSTANCE = "core-operator";

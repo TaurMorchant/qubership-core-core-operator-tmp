@@ -1,13 +1,13 @@
 package com.netcracker.core.declarative.client.reconciler;
 
-import org.qubership.core.declarative.client.rest.CompositeClient;
-import org.qubership.core.declarative.resources.base.CoreCondition;
-import org.qubership.core.declarative.resources.base.CoreResource;
-import org.qubership.core.declarative.resources.composite.Composite;
-import org.qubership.core.declarative.service.CompositeConsulUpdater;
-import org.qubership.core.declarative.service.CompositeSpec;
-import org.qubership.core.declarative.service.CompositeStructureUpdateNotifier;
-import org.qubership.core.declarative.service.NoopCompositeConsulUpdaterImpl;
+import com.netcracker.core.declarative.client.rest.CompositeClient;
+import com.netcracker.core.declarative.resources.base.CoreCondition;
+import com.netcracker.core.declarative.resources.base.CoreResource;
+import com.netcracker.core.declarative.resources.composite.Composite;
+import com.netcracker.core.declarative.service.CompositeConsulUpdater;
+import com.netcracker.core.declarative.service.CompositeSpec;
+import com.netcracker.core.declarative.service.CompositeStructureUpdateNotifier;
+import com.netcracker.core.declarative.service.NoopCompositeConsulUpdaterImpl;
 import io.fabric8.kubernetes.api.model.HasMetadata;
 import io.fabric8.kubernetes.api.model.runtime.RawExtension;
 import io.fabric8.kubernetes.client.KubernetesClient;
@@ -18,9 +18,9 @@ import org.junit.jupiter.api.Test;
 import java.util.List;
 import java.util.Map;
 
-import static org.qubership.core.declarative.client.reconciler.CompositeReconciler.DBAAS_NAME;
-import static org.qubership.core.declarative.client.reconciler.CompositeReconciler.MAAS_NAME;
-import static org.qubership.core.declarative.client.reconciler.CompositeReconciler.XAAS_UPDATED_STEP_NAME;
+import static com.netcracker.core.declarative.client.reconciler.CompositeReconciler.DBAAS_NAME;
+import static com.netcracker.core.declarative.client.reconciler.CompositeReconciler.MAAS_NAME;
+import static com.netcracker.core.declarative.client.reconciler.CompositeReconciler.XAAS_UPDATED_STEP_NAME;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;

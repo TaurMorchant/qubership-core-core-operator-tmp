@@ -6,10 +6,10 @@ import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.databind.DeserializationContext;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializerProvider;
-import org.qubership.core.declarative.resources.base.CoreCondition;
-import org.qubership.core.declarative.resources.base.DeclarativeStatus;
-import org.qubership.core.declarative.resources.base.serializer.DeclarativeStatusDeserializer;
-import org.qubership.core.declarative.resources.base.serializer.DeclarativeStatusSerializer;
+import com.netcracker.core.declarative.resources.base.CoreCondition;
+import com.netcracker.core.declarative.resources.base.DeclarativeStatus;
+import com.netcracker.core.declarative.resources.base.serializer.DeclarativeStatusDeserializer;
+import com.netcracker.core.declarative.resources.base.serializer.DeclarativeStatusSerializer;
 import io.quarkus.test.junit.QuarkusTest;
 import org.junit.jupiter.api.Test;
 
@@ -23,8 +23,8 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
-import static org.qubership.core.declarative.client.rest.ProcessStatus.COMPLETED;
-import static org.qubership.core.declarative.resources.base.Phase.UPDATED_PHASE;
+import static com.netcracker.core.declarative.client.rest.ProcessStatus.COMPLETED;
+import static com.netcracker.core.declarative.resources.base.Phase.UPDATED_PHASE;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @QuarkusTest

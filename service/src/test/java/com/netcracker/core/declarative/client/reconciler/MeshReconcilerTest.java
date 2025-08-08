@@ -1,10 +1,10 @@
 package com.netcracker.core.declarative.client.reconciler;
 
-import org.qubership.core.declarative.client.rest.DeclarativeRequest;
-import org.qubership.core.declarative.client.rest.deprecated.MeshClientV3;
-import org.qubership.core.declarative.resources.base.CoreResource;
-import org.qubership.core.declarative.resources.base.Phase;
-import org.qubership.core.declarative.resources.mesh.Mesh;
+import com.netcracker.core.declarative.client.rest.DeclarativeRequest;
+import com.netcracker.core.declarative.client.rest.deprecated.MeshClientV3;
+import com.netcracker.core.declarative.resources.base.CoreResource;
+import com.netcracker.core.declarative.resources.base.Phase;
+import com.netcracker.core.declarative.resources.mesh.Mesh;
 import io.fabric8.kubernetes.api.model.HasMetadata;
 import io.fabric8.kubernetes.api.model.ObjectMeta;
 import io.fabric8.kubernetes.api.model.runtime.RawExtension;

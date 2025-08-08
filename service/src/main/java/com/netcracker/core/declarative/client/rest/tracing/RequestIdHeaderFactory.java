@@ -6,7 +6,7 @@ import jakarta.ws.rs.core.MultivaluedMap;
 import org.eclipse.microprofile.rest.client.ext.ClientHeadersFactory;
 import org.slf4j.MDC;
 
-import static org.qubership.core.declarative.client.constants.Constants.X_REQUEST_ID;
+import static com.netcracker.core.declarative.client.constants.Constants.X_REQUEST_ID;
 
 @ApplicationScoped
 public class RequestIdHeaderFactory implements ClientHeadersFactory {

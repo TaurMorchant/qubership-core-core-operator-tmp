@@ -4,9 +4,9 @@ import io.fabric8.kubernetes.client.KubernetesClient;
 import io.javaoperatorsdk.operator.api.reconciler.UpdateControl;
 import jakarta.ws.rs.ServerErrorException;
 import jakarta.ws.rs.core.Response;
-import org.qubership.core.declarative.client.rest.DeclarativeRequest;
-import org.qubership.core.declarative.client.rest.deprecated.MeshClientV3;
-import org.qubership.core.declarative.resources.mesh.Mesh;
+import com.netcracker.core.declarative.client.rest.DeclarativeRequest;
+import com.netcracker.core.declarative.client.rest.deprecated.MeshClientV3;
+import com.netcracker.core.declarative.resources.mesh.Mesh;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -14,7 +14,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import static jakarta.servlet.http.HttpServletResponse.SC_OK;
-import static org.qubership.core.declarative.resources.base.Phase.UPDATED_PHASE;
+import static com.netcracker.core.declarative.resources.base.Phase.UPDATED_PHASE;
 
 public abstract class BaseMeshReconciler<T extends Mesh> extends CoreReconciler<T> {
     private static final Logger log = LoggerFactory.getLogger(BaseMeshReconciler.class);

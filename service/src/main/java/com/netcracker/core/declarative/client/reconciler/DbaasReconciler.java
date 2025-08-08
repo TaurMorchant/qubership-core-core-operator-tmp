@@ -1,14 +1,14 @@
 package com.netcracker.core.declarative.client.reconciler;
 
-import org.qubership.core.declarative.client.rest.DeclarativeClient;
-import org.qubership.core.declarative.resources.dbaas.Dbaas;
+import com.netcracker.core.declarative.client.rest.DeclarativeClient;
+import com.netcracker.core.declarative.resources.dbaas.Dbaas;
 import io.fabric8.kubernetes.client.KubernetesClient;
 import io.javaoperatorsdk.operator.api.reconciler.Constants;
 import io.javaoperatorsdk.operator.api.reconciler.ControllerConfiguration;
 import io.javaoperatorsdk.operator.processing.retry.GradualRetry;
 import jakarta.inject.Inject;
 import jakarta.inject.Named;
-import org.qubership.core.declarative.resources.maas.Maas;
+import com.netcracker.core.declarative.resources.maas.Maas;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

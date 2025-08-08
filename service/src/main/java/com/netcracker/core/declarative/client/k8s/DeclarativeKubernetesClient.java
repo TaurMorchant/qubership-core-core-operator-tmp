@@ -1,9 +1,9 @@
 package com.netcracker.core.declarative.client.k8s;
 
-import org.qubership.core.declarative.resources.maas.Maas;
-import org.qubership.core.declarative.resources.maas.MaasList;
-import org.qubership.core.declarative.resources.mesh.Mesh;
-import org.qubership.core.declarative.resources.mesh.MeshList;
+import com.netcracker.core.declarative.resources.maas.Maas;
+import com.netcracker.core.declarative.resources.maas.MaasList;
+import com.netcracker.core.declarative.resources.mesh.Mesh;
+import com.netcracker.core.declarative.resources.mesh.MeshList;
 import io.fabric8.kubernetes.client.KubernetesClient;
 import io.fabric8.kubernetes.client.dsl.MixedOperation;
 import io.fabric8.kubernetes.client.dsl.Resource;

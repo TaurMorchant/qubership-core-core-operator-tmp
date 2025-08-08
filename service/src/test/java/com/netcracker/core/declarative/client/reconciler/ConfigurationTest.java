@@ -2,15 +2,15 @@ package com.netcracker.core.declarative.client.reconciler;
 
 import jakarta.enterprise.inject.Instance;
 import org.junit.jupiter.api.Test;
-import org.qubership.cloud.consul.provider.common.TokenStorage;
-import org.qubership.core.declarative.service.*;
+import com.netcracker.cloud.consul.provider.common.TokenStorage;
+import com.netcracker.core.declarative.service.*;
 
 import java.net.MalformedURLException;
 import java.net.URI;
 import java.util.List;
 
-import static org.qubership.core.declarative.client.reconciler.CompositeReconciler.DBAAS_NAME;
-import static org.qubership.core.declarative.client.reconciler.CompositeReconciler.MAAS_NAME;
+import static com.netcracker.core.declarative.client.reconciler.CompositeReconciler.DBAAS_NAME;
+import static com.netcracker.core.declarative.client.reconciler.CompositeReconciler.MAAS_NAME;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;

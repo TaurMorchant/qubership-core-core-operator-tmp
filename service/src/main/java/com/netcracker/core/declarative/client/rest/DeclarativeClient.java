@@ -1,6 +1,6 @@
 package com.netcracker.core.declarative.client.rest;
 
-import org.qubership.core.declarative.client.rest.tracing.RequestIdHeaderFactory;
+import com.netcracker.core.declarative.client.rest.tracing.RequestIdHeaderFactory;
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.POST;
 import jakarta.ws.rs.Path;

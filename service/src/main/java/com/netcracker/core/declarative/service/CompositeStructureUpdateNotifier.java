@@ -2,11 +2,11 @@ package com.netcracker.core.declarative.service;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.qubership.core.declarative.client.rest.CompositeClient;
+import com.netcracker.core.declarative.client.rest.CompositeClient;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
-import org.qubership.cloud.core.error.rest.tmf.DefaultTmfErrorResponseConverter;
-import org.qubership.cloud.core.error.rest.tmf.TmfErrorResponse;
+import com.netcracker.cloud.core.error.rest.tmf.DefaultTmfErrorResponseConverter;
+import com.netcracker.cloud.core.error.rest.tmf.TmfErrorResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
