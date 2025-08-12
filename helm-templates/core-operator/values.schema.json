@@ -71,7 +71,6 @@
       "NAMESPACE": "",
       "SERVICE_NAME": "core-operator",
       "REPLICAS": 1,
-      "SSL_SECRET": "defaultsslcertificate",
       "TAG": "",
       "TENANT_DEFAULT_DOMAIN_ZONE": "",
       "TRACING_ENABLED": false,
@@ -168,16 +167,6 @@
       "envSpecific": true,
       "internal": true,
       "title": "The REPLICAS schema"
-    },
-    "SSL_SECRET": {
-      "$id": "#/properties/SSL_SECRET",
-      "type": "string",
-      "title": "The SSL_SECRET schema",
-      "description": "SSL secret name.",
-      "examples": [
-        "defaultsslcertificate"
-      ],
-      "internal": true
     },
     "TAG": {
       "$id": "#/properties/TAG",
