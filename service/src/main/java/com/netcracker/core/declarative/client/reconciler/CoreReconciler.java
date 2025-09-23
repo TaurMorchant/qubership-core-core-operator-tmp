@@ -120,7 +120,6 @@ public abstract class CoreReconciler<T extends CoreResource> implements Reconcil
                 case WAITING_FOR_DEPENDS -> reconcilePooling(resource);
                 case UPDATED_PHASE -> {
                     log.info("Successfully finished processing CR");
-                    resource.getStatus().setObservedGeneration(generation);
                     resource.getStatus().getConditions().clear();
                     retryResourceCache.remove(ResourceID.fromResource(resource));
                     yield UpdateControl.patchStatus(resource);
@@ -268,6 +267,7 @@ public abstract class CoreReconciler<T extends CoreResource> implements Reconcil
         log.info("Transitioning to phase={}", phase);
         resource.getStatus().setPhase(phase);
         if (phase == UPDATED_PHASE) {
+            resource.getStatus().setObservedGeneration(resource.getMetadata().getGeneration());
             resource.getStatus().setAdditionalProperty(PROCESSED_BY_OPERATOR_VER_PROPERTY, deploymentSessionId);
         }
         int nextDelay = retryResourceCache.getNextDelay(phase, ResourceID.fromResource(resource));
