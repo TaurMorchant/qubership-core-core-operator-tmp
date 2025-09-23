@@ -12,8 +12,7 @@ import com.netcracker.core.declarative.service.CompositeStructureUpdateNotifier;
 
 import java.util.List;
 
-@Informer(namespaces = Constants.WATCH_CURRENT_NAMESPACE)
-@ControllerConfiguration(name = "CompositeReconciler")
+@ControllerConfiguration(informer = @Informer(namespaces = Constants.WATCH_CURRENT_NAMESPACE), name = "CompositeReconciler")
 @GradualRetry(maxAttempts = -1)
 public class CompositeReconciler extends BaseCompositeReconciler<Composite> {
 

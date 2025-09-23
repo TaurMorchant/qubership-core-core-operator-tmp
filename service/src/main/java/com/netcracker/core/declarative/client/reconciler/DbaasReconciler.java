@@ -10,8 +10,7 @@ import io.javaoperatorsdk.operator.processing.retry.GradualRetry;
 import jakarta.inject.Inject;
 import jakarta.inject.Named;
 
-@Informer(namespaces = Constants.WATCH_CURRENT_NAMESPACE)
-@ControllerConfiguration(name = "DBaaSReconciler")
+@ControllerConfiguration(informer = @Informer(namespaces = Constants.WATCH_CURRENT_NAMESPACE), name = "DBaaSReconciler")
 @SuppressWarnings("unused")
 @GradualRetry(maxAttempts = -1)
 public class DbaasReconciler extends BaseDbaasReconciler<Dbaas> {

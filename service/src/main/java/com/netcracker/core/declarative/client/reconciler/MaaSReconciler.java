@@ -10,8 +10,7 @@ import jakarta.inject.Named;
 import com.netcracker.core.declarative.client.rest.DeclarativeClient;
 import com.netcracker.core.declarative.resources.maas.Maas;
 
-@Informer(namespaces = Constants.WATCH_CURRENT_NAMESPACE)
-@ControllerConfiguration(name = "MaaSReconciler")
+@ControllerConfiguration(informer = @Informer(namespaces = Constants.WATCH_CURRENT_NAMESPACE), name = "MaaSReconciler")
 @SuppressWarnings("unused")
 @GradualRetry(maxAttempts = -1)
 public class MaaSReconciler extends BaseMaaSReconciler<Maas> {

@@ -10,8 +10,7 @@ import jakarta.inject.Named;
 import com.netcracker.core.declarative.client.rest.deprecated.MeshClientV3;
 import com.netcracker.core.declarative.resources.mesh.Mesh;
 
-@Informer(namespaces = Constants.WATCH_CURRENT_NAMESPACE)
-@ControllerConfiguration(name = "MeshReconciler")
+@ControllerConfiguration(informer = @Informer(namespaces = Constants.WATCH_CURRENT_NAMESPACE), name = "MeshReconciler")
 @SuppressWarnings("unused")
 @GradualRetry(maxAttempts = -1)
 public class MeshReconciler extends BaseMeshReconciler<Mesh> {
