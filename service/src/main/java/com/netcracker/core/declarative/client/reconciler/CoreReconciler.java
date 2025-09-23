@@ -95,7 +95,6 @@ public abstract class CoreReconciler<T extends CoreResource> implements Reconcil
         }
 
         Long generation = resource.getMetadata().getGeneration();
-        resource.getStatus().setObservedGeneration(generation);
         if (resource.getStatus().getObservedGeneration() != null && !Objects.equals(resource.getStatus().getObservedGeneration(), generation)) {
             //this means that someone manually updated the resource, we must clear all conditions as they no longer reflect updated object status
             log.info("Resource was updated, clear conditions and reconcile. Generation={}, ObservedGeneration={}", generation, resource.getStatus().getObservedGeneration());
@@ -266,6 +265,7 @@ public abstract class CoreReconciler<T extends CoreResource> implements Reconcil
     protected UpdateControl<T> setPhaseAndReschedule(T resource, Phase phase) {
         MDC.put(PHASE, phase.getValue());
         log.info("Transitioning to phase={}", phase);
+        resource.getStatus().setObservedGeneration(resource.getMetadata().getGeneration());
         resource.getStatus().setPhase(phase);
         if (phase == UPDATED_PHASE) {
             resource.getStatus().setAdditionalProperty(PROCESSED_BY_OPERATOR_VER_PROPERTY, deploymentSessionId);
