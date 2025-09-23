@@ -120,6 +120,7 @@ public abstract class CoreReconciler<T extends CoreResource> implements Reconcil
                 case WAITING_FOR_DEPENDS -> reconcilePooling(resource);
                 case UPDATED_PHASE -> {
                     log.info("Successfully finished processing CR");
+                    resource.getStatus().setObservedGeneration(generation);
                     resource.getStatus().getConditions().clear();
                     retryResourceCache.remove(ResourceID.fromResource(resource));
                     yield UpdateControl.patchStatus(resource);
