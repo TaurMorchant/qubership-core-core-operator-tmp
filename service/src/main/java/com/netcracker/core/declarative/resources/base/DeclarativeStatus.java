@@ -8,7 +8,6 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.netcracker.core.declarative.resources.base.serializer.DeclarativeStatusDeserializer;
 import com.netcracker.core.declarative.resources.base.serializer.DeclarativeStatusSerializer;
-import io.javaoperatorsdk.operator.api.ObservedGenerationAwareStatus;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -19,7 +18,7 @@ import java.util.Map;
 @Setter
 @Getter
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class DeclarativeStatus extends ObservedGenerationAwareStatus {
+public class DeclarativeStatus extends ObservedGenerationStatus {
     Phase phase = Phase.UNKNOWN;
     @JsonSerialize(using = DeclarativeStatusSerializer.class)
     @JsonDeserialize(using = DeclarativeStatusDeserializer.class)

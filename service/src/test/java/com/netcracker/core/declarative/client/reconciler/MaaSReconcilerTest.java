@@ -47,7 +47,7 @@ class MaaSReconcilerTest {
 
         when(maasDeclarativeClient.apply(eq("1"), any())).thenReturn(Response.ok().build());
         UpdateControl<Maas> maasUpdateControl = maaSReconciler.reconcileInternal(maas);
-        assertTrue(maasUpdateControl.getResource().getStatus().isUpdated());
+        assertTrue(maasUpdateControl.getResource().get().getStatus().isUpdated());
 
         when(maasDeclarativeClient.apply(eq("1"), any())).thenReturn(Response.serverError().build());
         assertThrows(ServerErrorException.class, () -> maaSReconciler.reconcileInternal(maas));

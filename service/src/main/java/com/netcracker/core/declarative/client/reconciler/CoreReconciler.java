@@ -81,7 +81,7 @@ public abstract class CoreReconciler<T extends CoreResource> implements Reconcil
             resource.getStatus().setPhase(INVALID_CONFIGURATION);
             addOrUpdateCondition(resource.getStatus().getConditions(),
                     new Condition(VALIDATED_STEP_NAME, ProcessStatus.FAILED, "Invalid CR Configuration", "One of the mandatory CR fields is missing"));
-            return UpdateControl.updateStatus(resource);
+            return UpdateControl.patchStatus(resource);
         }
 
         Phase phase = resource.getStatus().getPhase();
@@ -273,7 +273,7 @@ public abstract class CoreReconciler<T extends CoreResource> implements Reconcil
         if (isPatch) {
             return UpdateControl.patchStatus(resource).rescheduleAfter(nextDelay, TimeUnit.SECONDS);
         } else {
-            return UpdateControl.updateStatus(resource).rescheduleAfter(nextDelay, TimeUnit.SECONDS);
+            return UpdateControl.patchStatus(resource).rescheduleAfter(nextDelay, TimeUnit.SECONDS);
         }
     }
 

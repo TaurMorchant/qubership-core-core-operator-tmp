@@ -46,7 +46,7 @@ class DbaaSReconcilerTest {
 
         when(dbaasDeclarativeClient.apply(eq("1"), any())).thenReturn(Response.ok().build());
         UpdateControl<Dbaas> dbaasUpdateControl = dbaasReconciler.reconcileInternal(dbaas);
-        assertTrue(dbaasUpdateControl.getResource().getStatus().isUpdated());
+        assertTrue(dbaasUpdateControl.getResource().get().getStatus().isUpdated());
 
         when(dbaasDeclarativeClient.apply(eq("1"), any())).thenReturn(Response.serverError().build());
         assertThrows(ServerErrorException.class, () -> dbaasReconciler.reconcileInternal(dbaas));
