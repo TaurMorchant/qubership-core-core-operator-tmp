@@ -81,7 +81,7 @@ public abstract class CoreReconciler<T extends CoreResource> implements Reconcil
             resource.getStatus().setPhase(INVALID_CONFIGURATION);
             addOrUpdateCondition(resource.getStatus().getConditions(),
                     new Condition(VALIDATED_STEP_NAME, ProcessStatus.FAILED, "Invalid CR Configuration", "One of the mandatory CR fields is missing"));
-            return UpdateControl.updateStatus(resource);
+            return UpdateControl.patchStatus(resource);
         }
 
         Phase phase = resource.getStatus().getPhase();
@@ -91,7 +91,7 @@ public abstract class CoreReconciler<T extends CoreResource> implements Reconcil
             log.info("SessionId on CR={} and Operator={} are different, clear conditions and reconcile.", processedByOperatorVer, deploymentSessionId);
             resource.getStatus().removeAdditionalProperty(PROCESSED_BY_OPERATOR_VER_PROPERTY);
             resource.getStatus().getConditions().clear();
-            return setPhaseAndReschedule(resource, UPDATING, true);
+            return setPhaseAndReschedule(resource, UPDATING);
         }
 
         Long generation = resource.getMetadata().getGeneration();
@@ -105,7 +105,7 @@ public abstract class CoreReconciler<T extends CoreResource> implements Reconcil
             if (p == UPDATED_PHASE || p == INVALID_CONFIGURATION) {
                 p = UPDATING;
             }
-            return setPhaseAndReschedule(resource, p, true);
+            return setPhaseAndReschedule(resource, p);
         }
 
         log.debug("reconciling phase={}", phase);
@@ -114,7 +114,7 @@ public abstract class CoreReconciler<T extends CoreResource> implements Reconcil
                 case UNKNOWN -> {
                     MDC.put(X_REQUEST_ID, UUID.randomUUID().toString());
                     resource.getStatus().setRequestId(MDC.get(X_REQUEST_ID));
-                    yield setPhaseAndReschedule(resource, UPDATING, false);
+                    yield setPhaseAndReschedule(resource, UPDATING);
                 }
                 case UPDATING, BACKING_OFF -> reconcileInternal(resource);
                 case WAITING_FOR_DEPENDS -> reconcilePooling(resource);
@@ -262,19 +262,16 @@ public abstract class CoreReconciler<T extends CoreResource> implements Reconcil
                 .build();
     }
 
-    protected UpdateControl<T> setPhaseAndReschedule(T resource, Phase phase, boolean isPatch) {
+    protected UpdateControl<T> setPhaseAndReschedule(T resource, Phase phase) {
         MDC.put(PHASE, phase.getValue());
         log.info("Transitioning to phase={}", phase);
+        resource.getStatus().setObservedGeneration(resource.getMetadata().getGeneration());
         resource.getStatus().setPhase(phase);
         if (phase == UPDATED_PHASE) {
             resource.getStatus().setAdditionalProperty(PROCESSED_BY_OPERATOR_VER_PROPERTY, deploymentSessionId);
         }
         int nextDelay = retryResourceCache.getNextDelay(phase, ResourceID.fromResource(resource));
-        if (isPatch) {
-            return UpdateControl.patchStatus(resource).rescheduleAfter(nextDelay, TimeUnit.SECONDS);
-        } else {
-            return UpdateControl.updateStatus(resource).rescheduleAfter(nextDelay, TimeUnit.SECONDS);
-        }
+        return UpdateControl.patchStatus(resource).rescheduleAfter(nextDelay, TimeUnit.SECONDS);
     }
 
     private UpdateControl<T> setPhaseInvalidIfRetryLimitReached(T resource) {
@@ -287,10 +284,6 @@ public abstract class CoreReconciler<T extends CoreResource> implements Reconcil
         fireEvent(resource, condition.message(), condition.reason());
 
         return UpdateControl.patchStatus(resource);
-    }
-
-    protected UpdateControl<T> setPhaseAndReschedule(T resource, Phase phase) {
-        return setPhaseAndReschedule(resource, phase, true);
     }
 
     protected void buildCondition(T resource, Object responseBody) {
